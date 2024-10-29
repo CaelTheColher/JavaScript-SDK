@@ -30,6 +30,7 @@ You can download and vendor the AnalogSense.js yourself, but you can also just l
 Once loaded, the following global functions become available:
 - `analogsense.getDevices(): Promise<Device[]>`
 - `analogsense.requestDevice(): Promise<Device | undefined>`
+- `analogsense.scancodeToString(scancode: number): string`
 
 A device instance has the following members:
 - `startListening(handler: function<void({scancode: int, value: float}[])>)`

@@ -1,3 +1,114 @@
+const keys = [
+    { "name": "Escape", "wooting": 0x29, "razer": 0x6E },
+    { "name": "F1", "wooting": 0x3A, "razer": 0x70 },
+    { "name": "F2", "wooting": 0x3B, "razer": 0x71 },
+    { "name": "F3", "wooting": 0x3C, "razer": 0x72 },
+    { "name": "F4", "wooting": 0x3D, "razer": 0x73 },
+    { "name": "F5", "wooting": 0x3E, "razer": 0x74 },
+    { "name": "F6", "wooting": 0x3F, "razer": 0x75 },
+    { "name": "F7", "wooting": 0x40, "razer": 0x76 },
+    { "name": "F8", "wooting": 0x41, "razer": 0x77 },
+    { "name": "F9", "wooting": 0x42, "razer": 0x78 },
+    { "name": "F10", "wooting": 0x43, "razer": 0x79 },
+    { "name": "F11", "wooting": 0x44, "razer": 0x7A },
+    { "name": "F12", "wooting": 0x45, "razer": 0x7B },
+    { "name": "`", "wooting": 0x35, "razer": 0x01 },
+    { "name": "1", "wooting": 0x1E, "razer": 0x02 },
+    { "name": "2", "wooting": 0x1F, "razer": 0x03 },
+    { "name": "3", "wooting": 0x20, "razer": 0x04 },
+    { "name": "4", "wooting": 0x21, "razer": 0x05 },
+    { "name": "5", "wooting": 0x22, "razer": 0x06 },
+    { "name": "6", "wooting": 0x23, "razer": 0x07 },
+    { "name": "7", "wooting": 0x24, "razer": 0x08 },
+    { "name": "8", "wooting": 0x25, "razer": 0x09 },
+    { "name": "9", "wooting": 0x26, "razer": 0x0A },
+    { "name": "0", "wooting": 0x27, "razer": 0x0B },
+    { "name": "-", "wooting": 0x2D, "razer": 0x0C },
+    { "name": "=", "wooting": 0x2E, "razer": 0x0D },
+    { "name": "Backspace", "wooting": 0x2A, "razer": 0x0F },
+    { "name": "Tab", "wooting": 0x2B, "razer": 0x10 },
+    { "name": "Q", "wooting": 0x14, "razer": 0x11 },
+    { "name": "W", "wooting": 0x1A, "razer": 0x12 },
+    { "name": "E", "wooting": 0x08, "razer": 0x13 },
+    { "name": "R", "wooting": 0x15, "razer": 0x14 },
+    { "name": "T", "wooting": 0x17, "razer": 0x15 },
+    { "name": "Y", "wooting": 0x1C, "razer": 0x16 },
+    { "name": "U", "wooting": 0x18, "razer": 0x17 },
+    { "name": "I", "wooting": 0x0C, "razer": 0x18 },
+    { "name": "O", "wooting": 0x12, "razer": 0x19 },
+    { "name": "P", "wooting": 0x13, "razer": 0x1A },
+    { "name": "[", "wooting": 0x2F, "razer": 0x1B },
+    { "name": "]", "wooting": 0x30, "razer": 0x1C },
+    { "name": "Enter", "wooting": 0x28, "razer": 0x2B },
+    { "name": "Caps Lock", "wooting": 0x39, "razer": 0x1E },
+    { "name": "A", "wooting": 0x04, "razer": 0x1F },
+    { "name": "S", "wooting": 0x16, "razer": 0x20 },
+    { "name": "D", "wooting": 0x07, "razer": 0x21 },
+    { "name": "F", "wooting": 0x09, "razer": 0x22 },
+    { "name": "G", "wooting": 0x0A, "razer": 0x23 },
+    { "name": "H", "wooting": 0x0B, "razer": 0x24 },
+    { "name": "J", "wooting": 0x0D, "razer": 0x25 },
+    { "name": "K", "wooting": 0x0E, "razer": 0x26 },
+    { "name": "L", "wooting": 0x0F, "razer": 0x27 },
+    { "name": ";", "wooting": 0x33, "razer": 0x28 },
+    { "name": "'", "wooting": 0x34, "razer": 0x29 },
+    { "name": "Backslash", "wooting": 0x31, "razer": 0x2A },
+    { "name": "Left Shift", "wooting": 0xE1, "razer": 0x2C },
+    { "name": "Intl Backslash", "wooting": 0x64, "razer": 0x2D },
+    { "name": "Z", "wooting": 0x1D, "razer": 0x2E },
+    { "name": "X", "wooting": 0x1B, "razer": 0x2F },
+    { "name": "C", "wooting": 0x06, "razer": 0x30 },
+    { "name": "V", "wooting": 0x19, "razer": 0x31 },
+    { "name": "B", "wooting": 0x05, "razer": 0x32 },
+    { "name": "N", "wooting": 0x11, "razer": 0x33 },
+    { "name": "M", "wooting": 0x10, "razer": 0x34 },
+    { "name": ",", "wooting": 0x36, "razer": 0x35 },
+    { "name": ".", "wooting": 0x37, "razer": 0x36 },
+    { "name": "/", "wooting": 0x38, "razer": 0x37 },
+    { "name": "Right Shift", "wooting": 0xE5, "razer": 0x39 },
+    { "name": "Left Ctrl", "wooting": 0xE0, "razer": 0x3A },
+    { "name": "Left Meta", "wooting": 0xE3, "razer": 0x7F },
+    { "name": "Left Alt", "wooting": 0xE2, "razer": 0x3C },
+    { "name": "Space", "wooting": 0x2C, "razer": 0x3D },
+    { "name": "Right Alt", "wooting": 0xE6, "razer": 0x3E },
+    { "name": "Right Meta", "wooting": 0xE7 },
+    { "name": "Fn", "wooting": 0x409, "razer": 0x3B },
+    { "name": "Context Menu", "wooting": 0x65, "razer": 0x81 },
+    { "name": "Right Ctrl", "wooting": 0xE4, "razer": 0x40 },
+    { "name": "Print Screen", "wooting": 0x46, "razer": 0x7C },
+    { "name": "Pause", "wooting": 0x48, "razer": 0x7D },
+    { "name": "Scroll Lock", "wooting": 0x47, "razer": 0x7E },
+    { "name": "Insert", "wooting": 0x49, "razer": 0x4B },
+    { "name": "Home", "wooting": 0x4A, "razer": 0x50 },
+    { "name": "Page Up", "wooting": 0x4B, "razer": 0x55 },
+    { "name": "Delete", "wooting": 0x4C, "razer": 0x4C },
+    { "name": "End", "wooting": 0x4D, "razer": 0x51 },
+    { "name": "Page Down", "wooting": 0x4E, "razer": 0x56 },
+    { "name": "Up Arrow", "wooting": 0x52, "razer": 0x53 },
+    { "name": "Left Arrow", "wooting": 0x50, "razer": 0x4F },
+    { "name": "Down Arrow", "wooting": 0x51, "razer": 0x54 },
+    { "name": "Right Arrow", "wooting": 0x4F, "razer": 0x59 },
+    { "name": "Num Lock", "wooting": 0x53, "razer": 0x5A },
+    { "name": "Numpad /", "wooting": 0x54, "razer": 0x5F },
+    { "name": "Numpad *", "wooting": 0x55, "razer": 0x64 },
+    { "name": "Numpad -", "wooting": 0x56, "razer": 0x69 },
+    { "name": "Numpad 7", "wooting": 0x5F, "razer": 0x5B },
+    { "name": "Numpad 8", "wooting": 0x60, "razer": 0x60 },
+    { "name": "Numpad 9", "wooting": 0x61, "razer": 0x65 },
+    { "name": "Numpad +", "wooting": 0x57, "razer": 0x6A },
+    { "name": "Numpad 4", "wooting": 0x5C, "razer": 0x5C },
+    { "name": "Numpad 5", "wooting": 0x5D, "razer": 0x61 },
+    { "name": "Numpad 6", "wooting": 0x5E, "razer": 0x66 },
+    { "name": "Numpad 1", "wooting": 0x59, "razer": 0x5D },
+    { "name": "Numpad 2", "wooting": 0x5A, "razer": 0x62 },
+    { "name": "Numpad 3", "wooting": 0x5B, "razer": 0x67 },
+    { "name": "Numpad Enter", "wooting": 0x58, "razer": 0x6C },
+    { "name": "Numpad 0", "wooting": 0x62, "razer": 0x63 },
+    { "name": "Numpad .", "wooting": 0x63, "razer": 0x68 }
+];
+const wooting_to_name = {}; Object.values(keys).forEach(key => wooting_to_name[key.wooting] = key.name);
+const razer_to_wooting = {}; Object.values(keys).forEach(key => razer_to_wooting[key.razer] = key.wooting);
+
 class AsProvider
 {
     constructor(dev)
@@ -304,120 +415,19 @@ window.analogsense = {
         }
         return null;
     },
+    scancodeToString: function(scancode)
+    {
+        if (scancode in wooting_to_name)
+        {
+            return wooting_to_name[scancode];
+        }
+        return toString(scancode);
+    },
     razerScancodeToHidScancode: function(scancode)
     {
-        switch (scancode)
+        if (scancode in razer_to_wooting)
         {
-        case 0x6E: return 0x29; // Escape
-        case 0x70: return 0x3A; // F1
-        case 0x71: return 0x3B; // F2
-        case 0x72: return 0x3C; // F3
-        case 0x73: return 0x3D; // F4
-        case 0x74: return 0x3E; // F5
-        case 0x75: return 0x3F; // F6
-        case 0x76: return 0x40; // F7
-        case 0x77: return 0x41; // F8
-        case 0x78: return 0x42; // F9
-        case 0x79: return 0x43; // F10
-        case 0x7A: return 0x44; // F11
-        case 0x7B: return 0x45; // F12
-
-        case 0x01: return 0x35; // `
-        case 0x02: return 0x1E; // 1
-        case 0x03: return 0x1F; // 2
-        case 0x04: return 0x20; // 3
-        case 0x05: return 0x21; // 4
-        case 0x06: return 0x22; // 5
-        case 0x07: return 0x23; // 6
-        case 0x08: return 0x24; // 7
-        case 0x09: return 0x25; // 8
-        case 0x0A: return 0x26; // 9
-        case 0x0B: return 0x27; // 0
-        case 0x0C: return 0x2D; // -
-        case 0x0D: return 0x2E; // =
-        case 0x0F: return 0x2A; // Backspace
-        case 0x10: return 0x2B; // Tab
-        case 0x11: return 0x14; // Q
-        case 0x12: return 0x1A; // W
-        case 0x13: return 0x08; // E
-        case 0x14: return 0x15; // R
-        case 0x15: return 0x17; // T
-        case 0x16: return 0x1C; // Y
-        case 0x17: return 0x18; // U
-        case 0x18: return 0x0C; // I
-        case 0x19: return 0x12; // O
-        case 0x1A: return 0x13; // P
-        case 0x1B: return 0x2F; // [
-        case 0x1C: return 0x30; // ]
-        case 0x2B: return 0x28; // Enter
-        case 0x1E: return 0x39; // Caps Lock
-        case 0x1F: return 0x04; // A
-        case 0x20: return 0x16; // S
-        case 0x21: return 0x07; // D
-        case 0x22: return 0x09; // F
-        case 0x23: return 0x0A; // G
-        case 0x24: return 0x0B; // H
-        case 0x25: return 0x0D; // J
-        case 0x26: return 0x0E; // K
-        case 0x27: return 0x0F; // L
-        case 0x28: return 0x33; // ;
-        case 0x29: return 0x34; // '
-        case 0x2A: return 0x31; // Backslash
-        case 0x2C: return 0xE1; // Left Shift
-        case 0x2D: return 0x64; // Intl Backslash
-        case 0x2E: return 0x1D; // Z
-        case 0x2F: return 0x1B; // X
-        case 0x30: return 0x06; // C
-        case 0x31: return 0x19; // V
-        case 0x32: return 0x05; // B
-        case 0x33: return 0x11; // N
-        case 0x34: return 0x10; // M
-        case 0x35: return 0x36; // ,
-        case 0x36: return 0x37; // .
-        case 0x37: return 0x38; // /
-        case 0x39: return 0xE5; // Right Shift
-        case 0x3A: return 0xE0; // Left Ctrl
-        case 0x7F: return 0xE3; // Left Meta
-        case 0x3C: return 0xE2; // Left Alt
-        case 0x3D: return 0x2C; // Space
-        case 0x3E: return 0xE6; // Right Alt
-        case 0x3B: return 0x409; // Fn (Custom mapping)
-        case 0x81: return 0x65; // Context Menu
-        case 0x40: return 0xE4; // Right Ctrl
-
-        case 0x7C: return 0x46; // Print Screen
-        case 0x7D: return 0x48; // Pause
-        case 0x7E: return 0x47; // Scroll Lock
-
-        case 0x4B: return 0x49; // Insert
-        case 0x50: return 0x4A; // Home
-        case 0x55: return 0x4B; // Page Up
-        case 0x4C: return 0x4C; // Delete
-        case 0x51: return 0x4D; // End
-        case 0x56: return 0x4E; // Page Down
-
-        case 0x53: return 0x52; // Up Arrow
-        case 0x4F: return 0x50; // Left Arrow
-        case 0x54: return 0x51; // Down Arrow
-        case 0x59: return 0x4F; // Right Arrow
-
-        case 0x5A: return 0x53; // Num Lock
-        case 0x5F: return 0x54; // Numpad /
-        case 0x64: return 0x55; // Numpad *
-        case 0x69: return 0x56; // Numpad -
-        case 0x5B: return 0x5F; // Numpad 7
-        case 0x60: return 0x60; // Numpad 8
-        case 0x65: return 0x61; // Numpad 9
-        case 0x6A: return 0x57; // Numpad +
-        case 0x5C: return 0x5C; // Numpad 4
-        case 0x61: return 0x5D; // Numpad 5
-        case 0x66: return 0x5E; // Numpad 6
-        case 0x5D: return 0x59; // Numpad 1
-        case 0x62: return 0x5A; // Numpad 2
-        case 0x67: return 0x5B; // Numpad 3
-        case 0x6C: return 0x58; // Numpad Enter
-        case 0x63: return 0x62; // Numpad 0
-        case 0x68: return 0x63; // Numpad .
+            return razer_to_wooting[scancode];
         }
         console.warn("Failed to map Razer scancode to HID scancode:", scancode);
         return 0;
