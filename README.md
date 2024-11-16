@@ -10,6 +10,9 @@ JavaScript API for analog keyboard input.
 - Razer Huntsman V3 Pro*
 - Razer Huntsman V3 Pro Mini*
 - Razer Huntsman V3 Pro Tenkeyless*
+- NuPhy Field75 HE
+- NuPhy Air60 HE†
+- NuPhy Halo65 HE†
 - DrunkDeer A75
 - DrunkDeer A75 Pro†
 - DrunkDeer G75†

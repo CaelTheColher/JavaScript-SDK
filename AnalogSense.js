@@ -53,7 +53,7 @@ const keys = [
     { "name": ";", "wooting": 0x33, "razer": 0x28 },
     { "name": "'", "wooting": 0x34, "razer": 0x29 },
     { "name": "Backslash", "wooting": 0x31, "razer": 0x2A },
-    { "name": "Left Shift", "wooting": 0xE1, "razer": 0x2C },
+    { "name": "Left Shift", "wooting": 0xE1, "razer": 0x2C, "nuphy": 0x200 },
     { "name": "Intl Backslash", "wooting": 0x64, "razer": 0x2D },
     { "name": "Z", "wooting": 0x1D, "razer": 0x2E },
     { "name": "X", "wooting": 0x1B, "razer": 0x2F },
@@ -65,16 +65,16 @@ const keys = [
     { "name": ",", "wooting": 0x36, "razer": 0x35 },
     { "name": ".", "wooting": 0x37, "razer": 0x36 },
     { "name": "/", "wooting": 0x38, "razer": 0x37 },
-    { "name": "Right Shift", "wooting": 0xE5, "razer": 0x39 },
-    { "name": "Left Ctrl", "wooting": 0xE0, "razer": 0x3A },
-    { "name": "Left Meta", "wooting": 0xE3, "razer": 0x7F },
-    { "name": "Left Alt", "wooting": 0xE2, "razer": 0x3C },
+    { "name": "Right Shift", "wooting": 0xE5, "razer": 0x39, "nuphy": 0x2000 },
+    { "name": "Left Ctrl", "wooting": 0xE0, "razer": 0x3A, "nuphy": 0x100 },
+    { "name": "Left Meta", "wooting": 0xE3, "razer": 0x7F, "nuphy": 0x800 },
+    { "name": "Left Alt", "wooting": 0xE2, "razer": 0x3C, "nuphy": 0x400 },
     { "name": "Space", "wooting": 0x2C, "razer": 0x3D },
-    { "name": "Right Alt", "wooting": 0xE6, "razer": 0x3E },
-    { "name": "Right Meta", "wooting": 0xE7 },
-    { "name": "Fn", "wooting": 0x409, "razer": 0x3B },
+    { "name": "Right Alt", "wooting": 0xE6, "razer": 0x3E, "nuphy": 0x4000 },
+    { "name": "Right Meta", "wooting": 0xE7, "nuphy": 0x8000 },
+    { "name": "Fn", "wooting": 0x409, "razer": 0x3B, "nuphy": 0xff05 },
     { "name": "Context Menu", "wooting": 0x65, "razer": 0x81 },
-    { "name": "Right Ctrl", "wooting": 0xE4, "razer": 0x40 },
+    { "name": "Right Ctrl", "wooting": 0xE4, "razer": 0x40, "nuphy": 0x1000 },
     { "name": "Print Screen", "wooting": 0x46, "razer": 0x7C },
     { "name": "Pause", "wooting": 0x48, "razer": 0x7D },
     { "name": "Scroll Lock", "wooting": 0x47, "razer": 0x7E },
@@ -108,6 +108,7 @@ const keys = [
 ];
 const wooting_to_name = {}; Object.values(keys).forEach(key => wooting_to_name[key.wooting] = key.name);
 const razer_to_wooting = {}; Object.values(keys).forEach(key => razer_to_wooting[key.razer] = key.wooting);
+const nuphy_to_wooting = {}; Object.values(keys).forEach(key => nuphy_to_wooting[key.nuphy ?? key.wooting] = key.wooting);
 
 class AsProvider
 {
@@ -242,6 +243,51 @@ class AsProviderRazerHuntsmanV3 extends AsProvider
     }
 }
 
+class AsProviderNuphy extends AsProvider
+{
+    static populateFilters(filters)
+    {
+        filters.push({ vendorId: 0x19f5, usagePage: 1, usage: 0 });
+    }
+
+    startListening(handler)
+    {
+        const _this = this;
+        this.buffer = {};
+        this.dev.oninputreport = function(event)
+        {
+            console.log(event.data.getUint8(0));
+            if (event.data.getUint8(0) == 0xA0)
+            {
+                const scancode = analogsense.nuphyScancodeToHidScancode(event.data.getUint16(2));
+                if (scancode != 0)
+                {
+                    console.log(scancode, event.data.getUint8(7));
+                    if (event.data.getUint8(7) == 0)
+                    {
+                        delete _this.buffer[scancode];
+                    }
+                    else
+                    {
+                        _this.buffer[scancode] = event.data.getUint8(7) / 200;
+                    }
+                    const active_keys = [];
+                    for (const [scancode, value] of Object.entries(_this.buffer))
+                    {
+                        active_keys.push({ scancode, value });
+                    }
+                    handler(active_keys);
+                }
+            }
+        };
+    }
+
+    stopListening()
+    {
+        this.dev.oninputreport = undefined;
+    }
+}
+
 class AsProviderDrunkdeer extends AsProvider
 {
     static populateFilters(filters)
@@ -308,6 +354,7 @@ window.analogsense = {
         AsProviderWooting,
         AsProviderRazerHuntsman,
         AsProviderRazerHuntsmanV3,
+        AsProviderNuphy,
         AsProviderDrunkdeer,
     ],
     findProviderForDevice: function(dev)
@@ -430,6 +477,15 @@ window.analogsense = {
             return razer_to_wooting[scancode];
         }
         console.warn("Failed to map Razer scancode to HID scancode:", scancode);
+        return 0;
+    },
+    nuphyScancodeToHidScancode: function(scancode)
+    {
+        if (scancode in nuphy_to_wooting)
+        {
+            return nuphy_to_wooting[scancode];
+        }
+        console.warn("Failed to map NuPhy scancode to HID scancode:", scancode);
         return 0;
     },
     drunkdeerIndexToHidScancode(i)
