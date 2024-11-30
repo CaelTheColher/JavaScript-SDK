@@ -110,6 +110,197 @@ const wooting_to_name = {}; Object.values(keys).forEach(key => wooting_to_name[k
 const razer_to_wooting = {}; Object.values(keys).forEach(key => razer_to_wooting[key.razer] = key.wooting);
 const nuphy_to_wooting = {}; Object.values(keys).forEach(key => nuphy_to_wooting[key.nuphy ?? key.wooting] = key.wooting);
 
+const KEY_NONE = 0;
+const KEY_A = 0x04;
+const KEY_B = 0x05;
+const KEY_C = 0x06;
+const KEY_D = 0x07;
+const KEY_E = 0x08;
+const KEY_F = 0x09;
+const KEY_G = 0x0a;
+const KEY_H = 0x0b;
+const KEY_I = 0x0c;
+const KEY_J = 0x0d;
+const KEY_K = 0x0e;
+const KEY_L = 0x0f;
+const KEY_M = 0x10;
+const KEY_N = 0x11;
+const KEY_O = 0x12;
+const KEY_P = 0x13;
+const KEY_Q = 0x14;
+const KEY_R = 0x15;
+const KEY_S = 0x16;
+const KEY_T = 0x17;
+const KEY_U = 0x18;
+const KEY_V = 0x19;
+const KEY_W = 0x1a;
+const KEY_X = 0x1b;
+const KEY_Y = 0x1c;
+const KEY_Z = 0x1d;
+const KEY_1 = 0x1e;
+const KEY_2 = 0x1f;
+const KEY_3 = 0x20;
+const KEY_4 = 0x21;
+const KEY_5 = 0x22;
+const KEY_6 = 0x23;
+const KEY_7 = 0x24;
+const KEY_8 = 0x25;
+const KEY_9 = 0x26;
+const KEY_0 = 0x27;
+const KEY_ENTER = 0x28;
+const KEY_ESCAPE = 0x29;
+const KEY_BACKSPACE = 0x2a;
+const KEY_TAB = 0x2b;
+const KEY_SPACE = 0x2c;
+const KEY_MINUS = 0x2d;
+const KEY_EQUALS = 0x2e;
+const KEY_BRACKET_LEFT = 0x2f;
+const KEY_BRACKET_RIGHT = 0x30;
+const KEY_BACKSLASH = 0x31;
+const KEY_INTL_HASH = 0x32;
+const KEY_SEMICOLON = 0x33;
+const KEY_QUOTE = 0x34;
+const KEY_BACKQUOTE = 0x35;
+const KEY_COMMA = 0x36;
+const KEY_PERIOD = 0x37;
+const KEY_SLASH = 0x38;
+const KEY_CAPS_LOCK = 0x39;
+const KEY_F1 = 0x3a;
+const KEY_F2 = 0x3b;
+const KEY_F3 = 0x3c;
+const KEY_F4 = 0x3d;
+const KEY_F5 = 0x3e;
+const KEY_F6 = 0x3f;
+const KEY_F7 = 0x40;
+const KEY_F8 = 0x41;
+const KEY_F9 = 0x42;
+const KEY_F10 = 0x43;
+const KEY_F11 = 0x44;
+const KEY_F12 = 0x45;
+const KEY_PRINT_SCREEN = 0x46;
+const KEY_SCROLL_LOCK = 0x47;
+const KEY_PAUSE = 0x48;
+const KEY_INSERT = 0x49;
+const KEY_HOME = 0x4a;
+const KEY_PAGE_UP = 0x4b;
+const KEY_DEL = 0x4c;
+const KEY_END = 0x4d;
+const KEY_PAGE_DOWN = 0x4e;
+const KEY_ARROW_RIGHT = 0x4f;
+const KEY_ARROW_LEFT = 0x50;
+const KEY_ARROW_DOWN = 0x51;
+const KEY_ARROW_UP = 0x52;
+const KEY_NUM_LOCK = 0x53;
+const KEY_NUMPAD_DIVIDE = 0x54;
+const KEY_NUMPAD_MULTIPLY = 0x55;
+const KEY_NUMPAD_SUBTRACT = 0x56;
+const KEY_NUMPAD_ADD = 0x57;
+const KEY_NUMPAD_ENTER = 0x58;
+const KEY_NUMPAD1 = 0x59;
+const KEY_NUMPAD2 = 0x5a;
+const KEY_NUMPAD3 = 0x5b;
+const KEY_NUMPAD4 = 0x5c;
+const KEY_NUMPAD5 = 0x5d;
+const KEY_NUMPAD6 = 0x5e;
+const KEY_NUMPAD7 = 0x5f;
+const KEY_NUMPAD8 = 0x60;
+const KEY_NUMPAD9 = 0x61;
+const KEY_NUMPAD0 = 0x62;
+const KEY_NUMPAD_DECIMAL = 0x63;
+const KEY_INTL_BACKSLASH = 0x64;
+const KEY_CONTEXT_MENU = 0x65;
+const KEY_POWER = 0x66;
+const KEY_NUMPAD_EQUAL = 0x67;
+const KEY_F13 = 0x68;
+const KEY_F14 = 0x69;
+const KEY_F15 = 0x6a;
+const KEY_F16 = 0x6b;
+const KEY_F17 = 0x6c;
+const KEY_F18 = 0x6d;
+const KEY_F19 = 0x6e;
+const KEY_F20 = 0x6f;
+const KEY_F21 = 0x70;
+const KEY_F22 = 0x71;
+const KEY_F23 = 0x72;
+const KEY_F24 = 0x73;
+const KEY_OPEN = 0x74;
+const KEY_HELP = 0x75;
+const KEY_SELECT = 0x77;
+const KEY_AGAIN = 0x79;
+const KEY_UNDO = 0x7a;
+const KEY_CUT = 0x7b;
+const KEY_COPY = 0x7c;
+const KEY_PASTE = 0x7d;
+const KEY_FIND = 0x7e;
+const KEY_VOLUME_MUTE = 0x7f;
+const KEY_VOLUME_UP = 0x80;
+const KEY_VOLUME_DOWN = 0x81;
+const KEY_NUMPAD_COMMA = 0x85;
+const KEY_INTL_RO = 0x87;
+const KEY_KANA_MODE = 0x88;
+const KEY_INTL_YEN = 0x89;
+const KEY_CONVERT = 0x8a;
+const KEY_NON_CONVERT = 0x8b;
+const KEY_LANG1 = 0x90;
+const KEY_LANG2 = 0x91;
+const KEY_LANG3 = 0x92;
+const KEY_LANG4 = 0x93;
+const KEY_LCTRL = 0xe0;
+const KEY_LSHIFT = 0xe1;
+const KEY_LALT = 0xe2;
+const KEY_LMETA = 0xe3;
+const KEY_RCTRL = 0xe4;
+const KEY_RSHIFT = 0xe5;
+const KEY_RALT = 0xe6;
+const KEY_RMETA = 0xe7;
+const KEY_OEM_1 = 0x403;
+const KEY_OEM_2 = 0x404;
+const KEY_OEM_3 = 0x405;
+const KEY_FN = 0x409;
+
+const layout_keychron_q1_he = [ 6, 15,
+    KEY_ESCAPE,    KEY_F1,    KEY_F2,   KEY_F3,   KEY_F4,   KEY_F5,   KEY_F6,    KEY_F7,   KEY_F8,   KEY_F9,    KEY_F10,       KEY_F11,          KEY_F12,           KEY_DEL,        KEY_NONE /* mute */,
+    KEY_BACKQUOTE, KEY_1,     KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,     KEY_7,    KEY_8,    KEY_9,     KEY_0,         KEY_MINUS,        KEY_EQUALS,        KEY_BACKSPACE,  KEY_PAGE_UP,
+    KEY_TAB,       KEY_Q,     KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_Y,     KEY_U,    KEY_I,    KEY_O,     KEY_P,         KEY_BRACKET_LEFT, KEY_BRACKET_RIGHT, KEY_BACKSLASH,  KEY_PAGE_DOWN,
+    KEY_CAPS_LOCK, KEY_A,     KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_H,     KEY_J,    KEY_K,    KEY_L,     KEY_SEMICOLON, KEY_QUOTE,        KEY_ENTER,         KEY_HOME,       KEY_NONE,
+    KEY_LSHIFT,    KEY_NONE,  KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,     KEY_N,    KEY_M,    KEY_COMMA, KEY_PERIOD,    KEY_NONE,         KEY_SLASH,         KEY_RSHIFT,     KEY_ARROW_UP,
+    KEY_LCTRL,     KEY_LMETA, KEY_LALT, KEY_NONE, KEY_NONE, KEY_NONE, KEY_SPACE, KEY_NONE, KEY_NONE, KEY_RMETA, KEY_FN,        KEY_RCTRL,        KEY_ARROW_LEFT,    KEY_ARROW_DOWN, KEY_ARROW_RIGHT,
+];
+
+const layout_keychron_q3_he = [ 6, 16,
+    KEY_ESCAPE,    KEY_F1,    KEY_F2,   KEY_F3,   KEY_F4,   KEY_F5,   KEY_F6,    KEY_F7,   KEY_F8,   KEY_F9,    KEY_F10,       KEY_F11,          KEY_F12,           KEY_PRINT_SCREEN, KEY_OEM_1,      KEY_OEM_2 /* cycle rgb effect */,
+    KEY_BACKQUOTE, KEY_1,     KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,     KEY_7,    KEY_8,    KEY_9,     KEY_0,         KEY_MINUS,        KEY_EQUALS,        KEY_BACKSPACE,    KEY_INSERT,     KEY_HOME,
+    KEY_TAB,       KEY_Q,     KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_Y,     KEY_U,    KEY_I,    KEY_O,     KEY_P,         KEY_BRACKET_LEFT, KEY_BRACKET_RIGHT, KEY_BACKSLASH,    KEY_DEL,        KEY_END,
+    KEY_CAPS_LOCK, KEY_A,     KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_H,     KEY_J,    KEY_K,    KEY_L,     KEY_SEMICOLON, KEY_QUOTE,        KEY_NONE,          KEY_ENTER,        KEY_PAGE_UP,    KEY_PAGE_DOWN,
+    KEY_LSHIFT,    KEY_NONE,  KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,     KEY_N,    KEY_M,    KEY_COMMA, KEY_PERIOD,    KEY_NONE,         KEY_SLASH,         KEY_RSHIFT,       KEY_NONE,       KEY_ARROW_UP,
+    KEY_LCTRL,     KEY_LMETA, KEY_LALT, KEY_NONE, KEY_NONE, KEY_NONE, KEY_SPACE, KEY_NONE, KEY_NONE, KEY_RALT,  KEY_RMETA,     KEY_FN,           KEY_RCTRL,         KEY_ARROW_LEFT,   KEY_ARROW_DOWN, KEY_ARROW_RIGHT,  
+];
+
+const layout_keychron_q5_he = [ 6, 19,
+    KEY_ESCAPE,    KEY_NONE,  KEY_F1,   KEY_F2,   KEY_F3,   KEY_F4,   KEY_F5,    KEY_F6,   KEY_F7,   KEY_F8,    KEY_F9,        KEY_F10,          KEY_F11,           KEY_F12,        KEY_DEL,         KEY_OEM_1,     KEY_OEM_2,         KEY_OEM_3,           KEY_NONE /* mute */,
+    KEY_BACKQUOTE, KEY_1,     KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,     KEY_7,    KEY_8,    KEY_9,     KEY_0,         KEY_MINUS,        KEY_EQUALS,        KEY_BACKSPACE,  KEY_PAGE_UP,     KEY_NUM_LOCK,  KEY_NUMPAD_DIVIDE, KEY_NUMPAD_MULTIPLY, KEY_NUMPAD_SUBTRACT,
+    KEY_TAB,       KEY_Q,     KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_Y,     KEY_U,    KEY_I,    KEY_O,     KEY_P,         KEY_BRACKET_LEFT, KEY_BRACKET_RIGHT, KEY_BACKSLASH,  KEY_PAGE_DOWN,   KEY_NUMPAD7,   KEY_NUMPAD8,       KEY_NUMPAD9,         KEY_NUMPAD_ADD,
+    KEY_CAPS_LOCK, KEY_A,     KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_H,     KEY_J,    KEY_K,    KEY_L,     KEY_SEMICOLON, KEY_QUOTE,        KEY_ENTER,         KEY_HOME,       KEY_NONE,        KEY_NUMPAD4,   KEY_NUMPAD5,       KEY_NUMPAD6,         KEY_NONE,
+    KEY_LSHIFT,    KEY_NONE,  KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,     KEY_N,    KEY_M,    KEY_COMMA, KEY_PERIOD,    KEY_NONE,         KEY_SLASH,         KEY_RSHIFT,     KEY_ARROW_UP,    KEY_NUMPAD1,   KEY_NUMPAD2,       KEY_NUMPAD3,         KEY_NUMPAD_ENTER,
+    KEY_LCTRL,     KEY_LMETA, KEY_LALT, KEY_NONE, KEY_NONE, KEY_NONE, KEY_SPACE, KEY_NONE, KEY_NONE, KEY_RMETA, KEY_FN,        KEY_RCTRL,        KEY_ARROW_LEFT,    KEY_ARROW_DOWN, KEY_ARROW_RIGHT, KEY_NONE,      KEY_NUMPAD0,       KEY_NUMPAD_DECIMAL,  KEY_NONE,
+];
+
+const layout_keychron_k2_he = [ 6, 16,
+    KEY_ESCAPE,    KEY_F1,    KEY_F2,   KEY_F3,   KEY_F4,   KEY_F5,   KEY_F6,    KEY_F7,   KEY_F8,   KEY_F9,    KEY_F10,       KEY_F11,          KEY_F12,           KEY_PRINT_SCREEN, KEY_DEL,         KEY_OEM_2 /* cycle rgb effect */,
+    KEY_BACKQUOTE, KEY_1,     KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,     KEY_7,    KEY_8,    KEY_9,     KEY_0,         KEY_MINUS,        KEY_EQUALS,        KEY_BACKSPACE,    KEY_PAGE_UP,     KEY_NONE,
+    KEY_TAB,       KEY_Q,     KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_Y,     KEY_U,    KEY_I,    KEY_O,     KEY_P,         KEY_BRACKET_LEFT, KEY_BRACKET_RIGHT, KEY_BACKSLASH,    KEY_PAGE_DOWN,   KEY_NONE,
+    KEY_CAPS_LOCK, KEY_A,     KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_H,     KEY_J,    KEY_K,    KEY_L,     KEY_SEMICOLON, KEY_QUOTE,        KEY_ENTER,         KEY_HOME,         KEY_NONE,        KEY_NONE,
+    KEY_LSHIFT,    KEY_NONE,  KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,     KEY_N,    KEY_M,    KEY_COMMA, KEY_PERIOD,    KEY_SLASH,        KEY_RSHIFT,        KEY_ARROW_UP,     KEY_END,         KEY_NONE,
+    KEY_LCTRL,     KEY_LMETA, KEY_LALT, KEY_NONE, KEY_NONE, KEY_NONE, KEY_SPACE, KEY_NONE, KEY_NONE, KEY_RALT,  KEY_FN,        KEY_RCTRL,        KEY_ARROW_LEFT,    KEY_ARROW_DOWN,   KEY_ARROW_RIGHT, KEY_NONE,
+];
+
+const layout_get_rows = (layout) => layout[0];
+const layout_get_cols = (layout) => layout[1];
+const layout_get_size = (layout) => layout_get_rows(layout) * layout_get_cols(layout);
+const layout_get_item = (layout, index) => layout[2 + index];
+const layout_index_to_row = (layout, index) => parseInt(index / layout_get_cols(layout));
+const layout_index_to_col = (layout, index) => index % layout_get_cols(layout);
+
 class AsProvider
 {
     constructor(dev)
@@ -126,6 +317,16 @@ class AsProvider
     {
         this.stopListening();
         this.dev.forget();
+    }
+
+    _bufferToActiveKeys()
+    {
+        const active_keys = [];
+        for (const [scancode, value] of Object.entries(this.buffer))
+        {
+            active_keys.push({ scancode, value });
+        }
+        return active_keys;
     }
 }
 
@@ -256,13 +457,11 @@ class AsProviderNuphy extends AsProvider
         this.buffer = {};
         this.dev.oninputreport = function(event)
         {
-            console.log(event.data.getUint8(0));
             if (event.data.getUint8(0) == 0xA0)
             {
                 const scancode = analogsense.nuphyScancodeToHidScancode(event.data.getUint16(2));
                 if (scancode != 0)
                 {
-                    console.log(scancode, event.data.getUint8(7));
                     if (event.data.getUint8(7) == 0)
                     {
                         delete _this.buffer[scancode];
@@ -271,12 +470,8 @@ class AsProviderNuphy extends AsProvider
                     {
                         _this.buffer[scancode] = event.data.getUint8(7) / 200;
                     }
-                    const active_keys = [];
-                    for (const [scancode, value] of Object.entries(_this.buffer))
-                    {
-                        active_keys.push({ scancode, value });
-                    }
-                    handler(active_keys);
+
+                    handler(_this._bufferToActiveKeys());
                 }
             }
         };
@@ -349,6 +544,160 @@ class AsProviderDrunkdeer extends AsProvider
     }
 }
 
+class AsProviderKeychron extends AsProvider
+{
+    static populateFilters(filters)
+    {
+        filters.push({ vendorId: 0x3434, usagePage: 0xFF60, usage: 0x61, productId: 0x0B10 }); // Keychron Q1 HE ANSI
+        filters.push({ vendorId: 0x3434, usagePage: 0xFF60, usage: 0x61, productId: 0x0B11 }); // Keychron Q1 HE ISO
+        filters.push({ vendorId: 0x3434, usagePage: 0xFF60, usage: 0x61, productId: 0x0B12 }); // Keychron Q1 HE JIS
+        filters.push({ vendorId: 0x3434, usagePage: 0xFF60, usage: 0x61, productId: 0x0B30 }); // Keychron Q3 HE ANSI
+        filters.push({ vendorId: 0x3434, usagePage: 0xFF60, usage: 0x61, productId: 0x0B50 }); // Keychron Q5 HE ANSI
+        filters.push({ vendorId: 0x3434, usagePage: 0xFF60, usage: 0x61, productId: 0x0E20 }); // Keychron K2 HE ANSI
+        filters.push({ vendorId: 0x3434, usagePage: 0xFF60, usage: 0x61, productId: 0x0E21 }); // Keychron K2 HE ISO
+        filters.push({ vendorId: 0x3434, usagePage: 0xFF60, usage: 0x61, productId: 0x0E22 }); // Keychron K2 HE JIS
+    }
+
+    startListening(handler)
+    {
+        const buf = new Uint8Array(32);
+        buf.set([
+            0xa9, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        ]);
+        this.dev.sendReport(0, buf);
+
+        if (this.dev.productId == 0x0B10 // ANSI
+            || this.dev.productId == 0x0B11 // ISO
+            || this.dev.productId == 0x0B12 // JIS
+            )
+        {
+            this.layout = layout_keychron_q1_he;
+        }
+        else if (this.dev.productId == 0x0B30)
+        {
+            this.layout = layout_keychron_q3_he;
+        }
+        else if (this.dev.productId == 0x0B50)
+        {
+            this.layout = layout_keychron_q5_he;
+        }
+        else
+        {
+            this.layout = layout_keychron_k2_he;
+        }
+
+        const _this = this;
+        this.dev.oninputreport = function(event)
+        {
+            const am_version = event.data.getUint8(2);
+            const has_full_analogue_report = (event.data.getUint8(31) == 0x45);
+
+            _this.index = 0;
+            _this.buffer = {};
+
+            if (has_full_analogue_report)
+            {
+                _this._requestAllKeys();
+                _this.dev.oninputreport = function(event)
+                {
+                    for (let i = 0; i != 30; ++i)
+                    {
+                        const li = _this.index * 30 + i;
+                        if (li < layout_get_size(_this.layout))
+                        {
+                            const key = layout_get_item(_this.layout, li);
+                            if (key != KEY_NONE)
+                            {
+                                const travel = event.data.getUint8(2 + i);
+                                if (travel >= 5)
+                                {
+                                    _this.buffer[key] = Math.min(travel / 235, 1.0);
+                                }
+                                else
+                                {
+                                    delete _this.buffer[key];
+                                }
+                            }
+                        }
+                    }
+                    if (++_this.index == 4)
+                    {
+                        handler(_this._bufferToActiveKeys());
+                        _this.index = 0;
+                        _this._requestAllKeys();
+                    }
+                };
+            }
+            else
+            {
+                _this._requestSingleKey();
+                _this.dev.oninputreport = function(event)
+                {
+                    const key = layout_get_item(_this.layout, _this.index);
+                    const travel = event.data.getUint8(am_version >= 4 ? 6 : 3);
+                    if (travel >= 5)
+                    {
+                        _this.buffer[key] = Math.min(travel / 235, 1.0);
+                    }
+                    else
+                    {
+                        delete _this.buffer[key];
+                    }
+
+                    handler(_this._bufferToActiveKeys());
+
+                    do {
+                        if (++_this.index == layout_get_size(_this.layout))
+                        {
+                            _this.index = 0;
+                        }
+                    } while (!_this._requestSingleKey());
+                };
+            }
+        };
+    }
+
+    _requestSingleKey()
+    {
+        const key = layout_get_item(this.layout, this.index);
+        if (key != KEY_NONE)
+        {
+            const row = layout_index_to_row(this.layout, this.index);
+            const col = layout_index_to_col(this.layout, this.index);
+            const buf = new Uint8Array(32);
+            buf.set([
+                0xa9, 0x30, row,  col,  0x00, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+            ]);
+            this.dev.sendReport(0, buf);
+            return true;
+        }
+        return false;
+    }
+
+    _requestAllKeys()
+    {
+        const buf = new Uint8Array(32);
+        buf.set([
+            0xa9, 0x31, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        ]);
+        this.dev.sendReport(0, buf);
+    }
+
+    stopListening()
+    {
+        this.dev.oninputreport = undefined;
+    }
+}
+
 window.analogsense = {
     providers: [
         AsProviderWooting,
@@ -356,6 +705,7 @@ window.analogsense = {
         AsProviderRazerHuntsmanV3,
         AsProviderNuphy,
         AsProviderDrunkdeer,
+        AsProviderKeychron,
     ],
     findProviderForDevice: function(dev)
     {
