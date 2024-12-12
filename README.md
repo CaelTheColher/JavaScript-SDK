@@ -5,29 +5,26 @@ JavaScript API for analog keyboard input.
 ## Supported Devices
 
 - Everything by Wooting
+- Everything by NuPhy
+- Everything by DrunkDeer
 - Razer Huntsman V2 Analog<sup>R</sup>
 - Razer Huntsman Mini Analog<sup>R</sup>
 - Razer Huntsman V3 Pro<sup>R</sup>
 - Razer Huntsman V3 Pro Mini<sup>R</sup>
 - Razer Huntsman V3 Pro Tenkeyless<sup>R</sup>
-- NuPhy Field75 HE
-- NuPhy Air60 HE<sup>U</sup>
-- NuPhy Halo65 HE<sup>U</sup>
-- DrunkDeer A75
-- DrunkDeer A75 Pro<sup>U</sup>
-- DrunkDeer G75<sup>U</sup>
-- DrunkDeer G65<sup>U</sup>
-- DrunkDeer G60<sup>U</sup>
-- Keychron Q1 HE<sup>P</sup>
-- Keychron Q3 HE<sup>P</sup>
-- Keychron Q5 HE<sup>P</sup>
-- Keychron K2 HE<sup>P</sup>
+- Keychron Q1 HE<sup>P, F</sup>
+- Keychron Q3 HE<sup>P, F</sup>
+- Keychron Q5 HE<sup>P, F</sup>
+- Keychron K2 HE<sup>P, F</sup>
+- Madlions MAD60HE<sup>P</sup>
 
 <sup>R</sup> Razer Synapse needs to be installed and running for analogue inputs to be received from this keyboard.
 
-<sup>P</sup> The official firmware only supports polling individual keys, which can lead to lag and missed inputs given the sheer amount of keys to scan, but you can use [custom firmware with full analog report functionality](https://analogsense.org/firmware/).
+<sup>P</sup> The official firmware only supports polling, which can lead to lag and missed inputs.
 
-<sup>U</sup> I don't own this keyboard, so I've not had a chance to test it, but it should work.
+<sup>F</sup> [Custom firmware with full analog report functionality is available](https://analogsense.org/firmware/).
+
+<!-- <sup>U</sup> I don't own this keyboard, so I've not had a chance to test it, but it should work. -->
 
 ## Usage
 
