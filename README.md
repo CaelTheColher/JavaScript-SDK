@@ -2,7 +2,7 @@
 
 JavaScript API for analog keyboard input.
 
-## Supported Devices
+## Supported Keyboards/Devices
 
 - Everything by Wooting
 - Everything by NuPhy
