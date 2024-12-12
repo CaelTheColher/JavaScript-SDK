@@ -208,7 +208,7 @@ const KEY_NUMPAD9 = 0x61;
 const KEY_NUMPAD0 = 0x62;
 const KEY_NUMPAD_DECIMAL = 0x63;
 const KEY_INTL_BACKSLASH = 0x64;
-const KEY_CONTEXT_MENU = 0x65;
+const KEY_CTX = 0x65;
 const KEY_POWER = 0x66;
 const KEY_NUMPAD_EQUAL = 0x67;
 const KEY_F13 = 0x68;
@@ -698,6 +698,76 @@ class AsProviderKeychron extends AsProvider
     }
 }
 
+class AsProviderMadlions extends AsProvider
+{
+    static populateFilters(filters)
+    {
+        // MAD60HE
+        filters.push({ vendorId: 0x373b, usagePage: 0xFF60, usage: 0x61, productId: 0x1055 });
+        filters.push({ vendorId: 0x373b, usagePage: 0xFF60, usage: 0x61, productId: 0x1056 });
+        filters.push({ vendorId: 0x373b, usagePage: 0xFF60, usage: 0x61, productId: 0x105D });
+    }
+
+    startListening(handler)
+    {
+        const layout = [
+            /*  0 */ KEY_ESCAPE,    KEY_1,     KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,     KEY_7,    KEY_8,    KEY_9,     KEY_0,         KEY_MINUS,        KEY_EQUALS,        KEY_BACKSPACE,
+            /* 14 */ KEY_TAB,       KEY_Q,     KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_Y,     KEY_U,    KEY_I,    KEY_O,     KEY_P,         KEY_BRACKET_LEFT, KEY_BRACKET_RIGHT, KEY_BACKSLASH,
+            /* 28 */ KEY_CAPS_LOCK, KEY_A,     KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_H,     KEY_J,    KEY_K,    KEY_L,     KEY_SEMICOLON, KEY_QUOTE,        KEY_NONE,          KEY_ENTER,
+            /* 42 */ KEY_LSHIFT,    KEY_NONE,  KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,     KEY_N,    KEY_M,    KEY_COMMA, KEY_PERIOD,    KEY_SLASH,        KEY_NONE,          KEY_RSHIFT,
+            /* 56 */ KEY_LCTRL,     KEY_LMETA, KEY_LALT, KEY_NONE, KEY_NONE, KEY_NONE, KEY_SPACE, KEY_NONE, KEY_NONE, KEY_RMETA, KEY_RALT,      KEY_CTX,          KEY_RCTRL,         KEY_FN,
+        ];
+
+        this.offset = 0;
+        this.buffer = {};
+
+        const buf = new Uint8Array(32);
+        buf.set([
+            0x02, 0x96, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x04,
+            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        ]);
+        this.dev.sendReport(0, buf);
+
+        const _this = this;
+        this.dev.oninputreport = function(event)
+        {
+            for (let i = 0; i != 4; ++i)
+            {
+                if (_this.offset + i < layout.length)
+                {
+                    const key = layout[_this.offset + i];
+                    const travel = event.data.getUint16(7 + (i * 5) + 3);
+                    if (travel == 0)
+                    {
+                        delete _this.buffer[key];
+                    }
+                    else
+                    {
+                        _this.buffer[key] = travel / 350;
+                    }
+                }
+            }
+            handler(_this._bufferToActiveKeys());
+
+            _this.offset += 4;
+            if (_this.offset >= layout.length)
+            {
+                _this.offset = 0;
+            }
+
+            buf[6] = _this.offset;
+            _this.dev.sendReport(0, buf);
+        };
+    }
+
+    stopListening()
+    {
+        this.dev.oninputreport = undefined;
+    }
+}
+
 window.analogsense = {
     providers: [
         AsProviderWooting,
@@ -706,6 +776,7 @@ window.analogsense = {
         AsProviderNuphy,
         AsProviderDrunkdeer,
         AsProviderKeychron,
+        AsProviderMadlions,
     ],
     findProviderForDevice: function(dev)
     {
