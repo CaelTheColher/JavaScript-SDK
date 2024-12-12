@@ -706,17 +706,34 @@ class AsProviderMadlions extends AsProvider
         filters.push({ vendorId: 0x373b, usagePage: 0xFF60, usage: 0x61, productId: 0x1055 });
         filters.push({ vendorId: 0x373b, usagePage: 0xFF60, usage: 0x61, productId: 0x1056 });
         filters.push({ vendorId: 0x373b, usagePage: 0xFF60, usage: 0x61, productId: 0x105D });
+        // MAD68HE
+        filters.push({ vendorId: 0x373b, usagePage: 0xFF60, usage: 0x61, productId: 0x1059 });
+        filters.push({ vendorId: 0x373b, usagePage: 0xFF60, usage: 0x61, productId: 0x105A });
+        filters.push({ vendorId: 0x373b, usagePage: 0xFF60, usage: 0x61, productId: 0x105C });
     }
 
     startListening(handler)
     {
-        const layout = [
-            /*  0 */ KEY_ESCAPE,    KEY_1,     KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,     KEY_7,    KEY_8,    KEY_9,     KEY_0,         KEY_MINUS,        KEY_EQUALS,        KEY_BACKSPACE,
-            /* 14 */ KEY_TAB,       KEY_Q,     KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_Y,     KEY_U,    KEY_I,    KEY_O,     KEY_P,         KEY_BRACKET_LEFT, KEY_BRACKET_RIGHT, KEY_BACKSLASH,
-            /* 28 */ KEY_CAPS_LOCK, KEY_A,     KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_H,     KEY_J,    KEY_K,    KEY_L,     KEY_SEMICOLON, KEY_QUOTE,        KEY_NONE,          KEY_ENTER,
-            /* 42 */ KEY_LSHIFT,    KEY_NONE,  KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,     KEY_N,    KEY_M,    KEY_COMMA, KEY_PERIOD,    KEY_SLASH,        KEY_NONE,          KEY_RSHIFT,
-            /* 56 */ KEY_LCTRL,     KEY_LMETA, KEY_LALT, KEY_NONE, KEY_NONE, KEY_NONE, KEY_SPACE, KEY_NONE, KEY_NONE, KEY_RMETA, KEY_RALT,      KEY_CTX,          KEY_RCTRL,         KEY_FN,
-        ];
+        if (this.dev.productId == 0x1055 || this.dev.productId == 0x1056 || this.dev.productId == 0x105D)
+        {
+            this.layout = [
+                KEY_ESCAPE,    KEY_1,     KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,     KEY_7,    KEY_8,    KEY_9,     KEY_0,         KEY_MINUS,        KEY_EQUALS,        KEY_BACKSPACE,
+                KEY_TAB,       KEY_Q,     KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_Y,     KEY_U,    KEY_I,    KEY_O,     KEY_P,         KEY_BRACKET_LEFT, KEY_BRACKET_RIGHT, KEY_BACKSLASH,
+                KEY_CAPS_LOCK, KEY_A,     KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_H,     KEY_J,    KEY_K,    KEY_L,     KEY_SEMICOLON, KEY_QUOTE,        KEY_NONE,          KEY_ENTER,
+                KEY_LSHIFT,    KEY_NONE,  KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,     KEY_N,    KEY_M,    KEY_COMMA, KEY_PERIOD,    KEY_SLASH,        KEY_NONE,          KEY_RSHIFT,
+                KEY_LCTRL,     KEY_LMETA, KEY_LALT, KEY_NONE, KEY_NONE, KEY_NONE, KEY_SPACE, KEY_NONE, KEY_NONE, KEY_RMETA, KEY_RALT,      KEY_CTX,          KEY_RCTRL,         KEY_FN,
+            ];
+        }
+        else
+        {
+            this.layout = [
+                KEY_ESCAPE,    KEY_1,     KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,     KEY_7,    KEY_8,    KEY_9,     KEY_0,         KEY_MINUS,        KEY_EQUALS,        KEY_BACKSPACE,  KEY_INSERT,
+                KEY_TAB,       KEY_Q,     KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_Y,     KEY_U,    KEY_I,    KEY_O,     KEY_P,         KEY_BRACKET_LEFT, KEY_BRACKET_RIGHT, KEY_BACKSLASH,  KEY_DEL,
+                KEY_CAPS_LOCK, KEY_A,     KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_H,     KEY_J,    KEY_K,    KEY_L,     KEY_SEMICOLON, KEY_QUOTE,        KEY_NONE,          KEY_ENTER,      KEY_PAGE_UP,
+                KEY_LSHIFT,    KEY_NONE,  KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,     KEY_N,    KEY_M,    KEY_COMMA, KEY_PERIOD,    KEY_SLASH,        KEY_RSHIFT,        KEY_ARROW_UP,   KEY_PAGE_DOWN,
+                KEY_LCTRL,     KEY_LMETA, KEY_LALT, KEY_NONE, KEY_NONE, KEY_NONE, KEY_SPACE, KEY_NONE, KEY_NONE, KEY_RALT,  KEY_FN,        KEY_RCTRL,        KEY_ARROW_LEFT,    KEY_ARROW_DOWN, KEY_ARROW_RIGHT,
+            ];
+        }
 
         this.offset = 0;
         this.buffer = {};
@@ -735,9 +752,9 @@ class AsProviderMadlions extends AsProvider
         {
             for (let i = 0; i != 4; ++i)
             {
-                if (_this.offset + i < layout.length)
+                if (_this.offset + i < this.layout.length)
                 {
-                    const key = layout[_this.offset + i];
+                    const key = this.layout[_this.offset + i];
                     const travel = event.data.getUint16(7 + (i * 5) + 3);
                     if (travel == 0)
                     {
@@ -752,7 +769,7 @@ class AsProviderMadlions extends AsProvider
             handler(_this._bufferToActiveKeys());
 
             _this.offset += 4;
-            if (_this.offset >= layout.length)
+            if (_this.offset >= this.layout.length)
             {
                 _this.offset = 0;
             }

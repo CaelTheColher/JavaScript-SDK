@@ -17,6 +17,7 @@ JavaScript API for analog keyboard input.
 - Keychron Q5 HE<sup>P, F</sup>
 - Keychron K2 HE<sup>P, F</sup>
 - Madlions MAD60HE<sup>P</sup>
+- Madlions MAD68HE<sup>P</sup>
 
 <sup>R</sup> Razer Synapse needs to be installed and running for analogue inputs to be received from this keyboard.
 
