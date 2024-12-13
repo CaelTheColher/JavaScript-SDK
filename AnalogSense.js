@@ -707,6 +707,7 @@ class AsProviderMadlions extends AsProvider
         filters.push({ vendorId: 0x373b, usagePage: 0xFF60, usage: 0x61, productId: 0x1056 });
         filters.push({ vendorId: 0x373b, usagePage: 0xFF60, usage: 0x61, productId: 0x105D });
         // MAD68HE
+        filters.push({ vendorId: 0x373b, usagePage: 0xFF60, usage: 0x61, productId: 0x1058 });
         filters.push({ vendorId: 0x373b, usagePage: 0xFF60, usage: 0x61, productId: 0x1059 });
         filters.push({ vendorId: 0x373b, usagePage: 0xFF60, usage: 0x61, productId: 0x105A });
         filters.push({ vendorId: 0x373b, usagePage: 0xFF60, usage: 0x61, productId: 0x105C });
@@ -752,9 +753,9 @@ class AsProviderMadlions extends AsProvider
         {
             for (let i = 0; i != 4; ++i)
             {
-                if (_this.offset + i < this.layout.length)
+                if (_this.offset + i < _this.layout.length)
                 {
-                    const key = this.layout[_this.offset + i];
+                    const key = _this.layout[_this.offset + i];
                     const travel = event.data.getUint16(7 + (i * 5) + 3);
                     if (travel == 0)
                     {
@@ -769,7 +770,7 @@ class AsProviderMadlions extends AsProvider
             handler(_this._bufferToActiveKeys());
 
             _this.offset += 4;
-            if (_this.offset >= this.layout.length)
+            if (_this.offset >= _this.layout.length)
             {
                 _this.offset = 0;
             }
